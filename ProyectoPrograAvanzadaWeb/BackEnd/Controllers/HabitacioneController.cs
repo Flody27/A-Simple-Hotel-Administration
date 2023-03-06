@@ -1,83 +1,76 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using DAL.Implementations;
+using DAL.Interfaces;
+using Entities.Entities;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BackEnd.Controllers
 {
+    [Route("api/[controller]")]
+    [ApiController]
     public class HabitacioneController : Controller
     {
-        // GET: HabitacioneController
-        public ActionResult Index()
+        private IHabitacioneDAL habitacioneDAL;
+
+        #region Constructor
+        public HabitacioneController ()
         {
-            return View();
+            habitacioneDAL = new HabitacioneDALImpl(new Entities.Entities.HotelContext());
+        }
+        #endregion
+
+        #region Consultar
+        // GET: api/<CategoryController>
+        [HttpGet]
+        public JsonResult Get()
+        {
+            IEnumerable<Habitacione> habitaciones = habitacioneDAL.GetAll();
+
+            return new JsonResult(habitaciones);
         }
 
-        // GET: HabitacioneController/Details/5
-        public ActionResult Details(int id)
+        // GET api/<CategoryController>/5
+        [HttpGet("{id}")]
+        public JsonResult Get(int id)
         {
-            return View();
-        }
+            Habitacione habitacion;
+            habitacion = habitacioneDAL.Get(id);
 
-        // GET: HabitacioneController/Create
-        public ActionResult Create()
-        {
-            return View();
+            return new JsonResult(habitacion);
         }
+        #endregion
 
-        // POST: HabitacioneController/Create
+        #region Agregar
+        // POST api/<CategoryController>
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public JsonResult Post([FromBody] Habitacione habitacion)
         {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
+            habitacioneDAL.Add(habitacion);
+            return new JsonResult(habitacion);
+        }
+        #endregion
+
+        #region MOdificar
+        // PUT api/<CategoryController>/5
+        [HttpPut]
+        public JsonResult Put([FromBody] Habitacione habitacion)
+        {
+            habitacioneDAL.Update(habitacion);
+            return new JsonResult(habitacion);
+        }
+        #endregion
+
+        #region Eliminar
+        // DELETE api/<CategoryController>/5
+        [HttpDelete("{id}")]
+        public JsonResult Delete(int id)
+        {
+            Habitacione habitacion = new Habitacione { HabId = id };
+            habitacioneDAL.Remove(habitacion);
+
+            return new JsonResult(habitacion);
         }
 
-        // GET: HabitacioneController/Edit/5
-        public ActionResult Edit(int id)
-        {
-            return View();
-        }
-
-        // POST: HabitacioneController/Edit/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: HabitacioneController/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        // POST: HabitacioneController/Delete/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
+        #endregion
     }
 }
+
