@@ -54,7 +54,7 @@ namespace BackEnd.Controllers
 
         #region Modificar
         // PUT api/<ServiciosController>/5
-        [HttpPut("{id}")]
+        [HttpPut]
         public JsonResult Put([FromBody] Servicio servicios)
         {
             ServicioDAL.Update(servicios);

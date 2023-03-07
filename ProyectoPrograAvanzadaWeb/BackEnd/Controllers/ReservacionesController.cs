@@ -96,8 +96,8 @@ namespace BackEnd.Controllers
         }
 
         // PUT api/<ReservacionesController>/5
-        [HttpPut("{id}")]
-        public JsonResult Put(int id, [FromBody] Reservacione reservacion)
+        [HttpPut]
+        public JsonResult Put([FromBody] Reservacione reservacion)
         {
             try
             {
