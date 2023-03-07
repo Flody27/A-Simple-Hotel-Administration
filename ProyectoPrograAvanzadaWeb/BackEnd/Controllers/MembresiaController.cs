@@ -7,14 +7,14 @@ namespace BackEnd.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class HabitacioneController : Controller
+    public class MembresiaController : Controller
     {
-        private IHabitacioneDAL habitacioneDAL;
+        private IMembresiaDAL membresiaDAL;
 
         #region Constructor
-        public HabitacioneController ()
+        public MembresiaController ()
         {
-            habitacioneDAL = new HabitacioneDALImpl(new Entities.Entities.HotelContext());
+            membresiaDAL = new MembresiaDALImpl(new Entities.Entities.HotelContext());
         }
         #endregion
 
@@ -23,39 +23,39 @@ namespace BackEnd.Controllers
         [HttpGet]
         public JsonResult Get()
         {
-            IEnumerable<Habitacione> habitaciones = habitacioneDAL.GetAll();
+            IEnumerable<Membresia> membresias = membresiaDAL.GetAll();
 
-            return new JsonResult(habitaciones);
+            return new JsonResult(membresias);
         }
 
         // GET api/<CategoryController>/5
         [HttpGet("{id}")]
         public JsonResult Get(int id)
         {
-            Habitacione habitacion;
-            habitacion = habitacioneDAL.Get(id);
+            Membresia membresia;
+            membresia = membresiaDAL.Get(id);
 
-            return new JsonResult(habitacion);
+            return new JsonResult(membresia);
         }
         #endregion
 
         #region Agregar
         // POST api/<CategoryController>
         [HttpPost]
-        public JsonResult Post([FromBody] Habitacione habitacion)
+        public JsonResult Post([FromBody] Membresia membresia)
         {
-            habitacioneDAL.Add(habitacion);
-            return new JsonResult(habitacion);
+            membresiaDAL.Add(membresia);
+            return new JsonResult(membresia);
         }
         #endregion
 
         #region MOdificar
         // PUT api/<CategoryController>/5
         [HttpPut]
-        public JsonResult Put([FromBody] Habitacione habitacion)
+        public JsonResult Put([FromBody] Membresia membresia)
         {
-            habitacioneDAL.Update(habitacion);
-            return new JsonResult(habitacion);
+            membresiaDAL.Update(membresia);
+            return new JsonResult(membresia);
         }
         #endregion
 
@@ -64,10 +64,10 @@ namespace BackEnd.Controllers
         [HttpDelete("{id}")]
         public JsonResult Delete(int id)
         {
-            Habitacione habitacion = new Habitacione { HabId = id };
-            habitacioneDAL.Remove(habitacion);
+            Membresia membresia = new Membresia{ MbrId = id };
+            membresiaDAL.Remove(membresia);
 
-            return new JsonResult(habitacion);
+            return new JsonResult(membresia);
         }
 
         #endregion
