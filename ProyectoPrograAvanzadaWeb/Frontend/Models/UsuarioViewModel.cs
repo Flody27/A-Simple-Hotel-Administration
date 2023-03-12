@@ -5,20 +5,23 @@ namespace Frontend.Models
 {
     public class UsuarioViewModel
     {
-        // Completar con lo de las mebresias y roles
-        [DisplayName("Usuario ID")]
+        [DisplayName("ID")]
         public int UsrId { get; set; }
-        [DisplayName("Nombre de usuario")]
+        [DisplayName("Nombre")]
         public string? UsrNombre { get; set; }
-        [DisplayName("Apellido del usuario")]
+        [DisplayName("Apellido")]
         public string? UsrApellido { get; set; }
-        [DisplayName("Correo del usuario")]
+        [DisplayName("Correo")]
         public string? UsrEmail { get; set; }
-        [DisplayName("Contraseña del usuario")]
+        [DisplayName("Contraseña")]
         public string? UsrPassword { get; set; }
-        [DisplayName("Rol del usuario")]
+        [DisplayName("Rol")]
         public int? UsrRolId { get; set; }
-        [DisplayName("Membresia del usuario")]
+        public IEnumerable<RolViewModel> Roles { get; set; }
+        [DisplayName("Membresia")]
         public int? UsrMbrId { get; set; }
+        public IEnumerable<MembresiaViewModel> Membresias { get; set; }
+
+
     }
 }

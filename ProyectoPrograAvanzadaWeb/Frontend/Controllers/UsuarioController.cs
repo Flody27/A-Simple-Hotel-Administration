@@ -7,14 +7,15 @@ namespace Frontend.Controllers
 {
     public class UsuarioController : Controller
     {
-        //Agregar los helper de membresia y rol
         private UsuarioHelper usuarioHelper;
+        private MembresiaHelper membresiaHelper;
+        private RolHelper rolHelper;
 
         public UsuarioController() {
-            // Completar con lo de las mebresias y roles
             usuarioHelper = new UsuarioHelper();
         }
 
+        #region Index
         // GET: UsuarioController
         public ActionResult Index()
         {
@@ -22,7 +23,9 @@ namespace Frontend.Controllers
 
             return View(usuarios);
         }
+        #endregion
 
+        #region Details
         // GET: UsuarioController/Details/5
         public ActionResult Details(int id)
         {
@@ -31,12 +34,19 @@ namespace Frontend.Controllers
 
             return View(usuario);
         }
+        #endregion
 
+        #region Create
         // GET: UsuarioController/Create
         public ActionResult Create()
         {
-            // Completar con lo de las mebresias y roles
-            return View();
+            rolHelper = new RolHelper();
+            membresiaHelper = new MembresiaHelper();
+            UsuarioViewModel usuario = new UsuarioViewModel();
+            usuario.Roles = rolHelper.GetAll();
+            usuario.Membresias = membresiaHelper.GetAll();
+
+            return View(usuario);
         }
 
         // POST: UsuarioController/Create
@@ -56,13 +66,18 @@ namespace Frontend.Controllers
                 return View();
             }
         }
+        #endregion
 
+        #region Edit
         // GET: UsuarioController/Edit/5
         public ActionResult Edit(int id)
         {
-            // Completar con lo de las mebresias y roles
             usuarioHelper = new UsuarioHelper();
+            rolHelper = new RolHelper();
+            membresiaHelper = new MembresiaHelper();
             UsuarioViewModel usuario = usuarioHelper.Get(id);
+            usuario.Roles = rolHelper.GetAll();
+            usuario.Membresias = membresiaHelper.GetAll();
 
             return View(usuario);
         }
@@ -84,7 +99,9 @@ namespace Frontend.Controllers
                 return View();
             }
         }
+        #endregion
 
+        #region Delete
         // GET: UsuarioController/Delete/5
         public ActionResult Delete(int id)
         {
@@ -101,7 +118,6 @@ namespace Frontend.Controllers
         {
             try
             {
-                usuarioHelper = new UsuarioHelper();
                 usuarioHelper.Delete(usuario.UsrId);
                 return RedirectToAction(nameof(Index));
             }
@@ -109,6 +125,7 @@ namespace Frontend.Controllers
             {
                 return View();
             }
-        }
+        } 
+        #endregion
     }
 }

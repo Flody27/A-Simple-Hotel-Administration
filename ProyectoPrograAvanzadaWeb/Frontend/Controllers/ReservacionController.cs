@@ -9,6 +9,8 @@ namespace Frontend.Controllers
     {
 
         private ReservacionHelper helper;
+        private UsuarioHelper usuarioHelper;
+        private HabitacionHelper habitacionHelper;
 
         public ReservacionController()
         {
@@ -34,7 +36,13 @@ namespace Frontend.Controllers
         // GET: ReservacionController/Create
         public ActionResult Create()
         {
-            return View();
+            habitacionHelper = new HabitacionHelper();
+            usuarioHelper = new UsuarioHelper();
+            ReservacionViewModel reservacion = new ReservacionViewModel();
+            reservacion.Habitaciones = habitacionHelper.GetAll();
+            reservacion.Usuarios = usuarioHelper.GetAll();
+
+            return View(reservacion);
         }
 
         // POST: ReservacionController/Create
@@ -56,7 +64,14 @@ namespace Frontend.Controllers
         // GET: ReservacionController/Edit/5
         public ActionResult Edit(int id)
         {
+            habitacionHelper = new HabitacionHelper();
+            usuarioHelper = new UsuarioHelper();
+            helper = new ReservacionHelper();
             ReservacionViewModel reservacion = helper.Get(id);
+            reservacion.Usuarios = usuarioHelper.GetAll();
+            reservacion.Habitaciones = habitacionHelper.GetAll();
+
+
             return View(reservacion);
         }
 

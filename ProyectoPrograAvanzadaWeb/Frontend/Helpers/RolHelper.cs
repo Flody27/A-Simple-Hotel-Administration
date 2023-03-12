@@ -18,7 +18,7 @@ namespace Frontend.Helpers
         {
             List<RolViewModel> lista;
 
-            HttpResponseMessage responseMessage = serviceRepository.GetResponse("/api/Roles");
+            HttpResponseMessage responseMessage = serviceRepository.GetResponse("/api/Role");
             var content = responseMessage.Content.ReadAsStringAsync().Result;
             lista = JsonConvert.DeserializeObject<List<RolViewModel>>(content);
 
@@ -30,7 +30,7 @@ namespace Frontend.Helpers
 
             RolViewModel Rol;
 
-            HttpResponseMessage responseMessage = serviceRepository.GetResponse("/api/Roles/" + id.ToString());
+            HttpResponseMessage responseMessage = serviceRepository.GetResponse("/api/Role/" + id.ToString());
             var content = responseMessage.Content.ReadAsStringAsync().Result;
             Rol = JsonConvert.DeserializeObject<RolViewModel>(content);
 
@@ -41,7 +41,7 @@ namespace Frontend.Helpers
         {
             RolViewModel Rol;
 
-            HttpResponseMessage responseMessage = serviceRepository.PostResponse("/api/Roles", payload);
+            HttpResponseMessage responseMessage = serviceRepository.PostResponse("/api/Role", payload);
             var content = responseMessage.Content.ReadAsStringAsync().Result;
             Rol = JsonConvert.DeserializeObject<RolViewModel>(content);
 
@@ -52,7 +52,7 @@ namespace Frontend.Helpers
         {
             RolViewModel Rol;
 
-            HttpResponseMessage responseMessage = serviceRepository.PutResponse("/api/Roles", payload);
+            HttpResponseMessage responseMessage = serviceRepository.PutResponse("/api/Role", payload);
             var content = responseMessage.Content.ReadAsStringAsync().Result;
             Rol = JsonConvert.DeserializeObject<RolViewModel>(content);
 
@@ -63,7 +63,7 @@ namespace Frontend.Helpers
         {
             RolViewModel Rol;
 
-            HttpResponseMessage responseMessage = serviceRepository.DeleteResponse("/api/Roles/" + id.ToString());
+            HttpResponseMessage responseMessage = serviceRepository.DeleteResponse("/api/Role/" + id.ToString());
             var content = responseMessage.Content.ReadAsStringAsync().Result;
             Rol = JsonConvert.DeserializeObject<RolViewModel>(content);
 

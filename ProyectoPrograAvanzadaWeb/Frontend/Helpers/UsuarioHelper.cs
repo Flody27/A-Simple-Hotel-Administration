@@ -62,7 +62,7 @@ namespace Frontend.Helpers
         {
             UsuarioViewModel Usuario;
 
-            HttpResponseMessage responseMessage = serviceRepository.DeleteResponse("/api/Order/" + id.ToString());
+            HttpResponseMessage responseMessage = serviceRepository.DeleteResponse("/api/Usuario/" + id.ToString());
             var content = responseMessage.Content.ReadAsStringAsync().Result;
             Usuario = JsonConvert.DeserializeObject<UsuarioViewModel>(content);
 
