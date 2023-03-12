@@ -1,0 +1,65 @@
+﻿@model IEnumerable<Frontend.Models.ReservacionViewModel>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.RsvId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RsvUsrId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RsvHabId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RsvFechaEntrada)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RsvFechaSalida)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RsvPrecioFinal)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.RsvId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RsvUsrId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RsvHabId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RsvFechaEntrada)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RsvFechaSalida)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RsvPrecioFinal)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new {  id=item.RsvId  }) |
+                    @Html.ActionLink("Details", "Details", new { id=item.RsvId }) |
+                    @Html.ActionLink("Delete", "Delete", new { id=item.RsvId })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

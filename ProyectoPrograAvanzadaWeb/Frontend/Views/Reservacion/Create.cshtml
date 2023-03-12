@@ -1,0 +1,56 @@
+﻿@model Frontend.Models.ReservacionViewModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>ReservacionViewModel</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            
+            <div class="form-group">
+                <label asp-for="RsvUsrId" class="control-label"></label>
+                @*<input asp-for="RsvUsrId" class="form-control" />*@
+                @Html.DropDownListFor(model => model.RsvUsrId, new SelectList(Model.Usuarios,"UsrId","UsrNombre"),"escoga el usuario")
+                <span asp-validation-for="RsvUsrId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="RsvHabId" class="control-label"></label>
+                @*<input asp-for="RsvHabId" class="form-control" />*@
+                @Html.DropDownListFor(model => model.RsvHabId, new SelectList(Model.Habitaciones,"HabId","HabNumPuerta"),"Seleccione una habitacion")
+                <span asp-validation-for="RsvHabId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="RsvFechaEntrada" class="control-label"></label>
+                <input asp-for="RsvFechaEntrada" class="form-control" />
+                <span asp-validation-for="RsvFechaEntrada" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="RsvFechaSalida" class="control-label"></label>
+                <input asp-for="RsvFechaSalida" class="form-control" />
+                <span asp-validation-for="RsvFechaSalida" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="RsvPrecioFinal" class="control-label"></label>
+                <input asp-for="RsvPrecioFinal" class="form-control" />
+                <span asp-validation-for="RsvPrecioFinal" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
