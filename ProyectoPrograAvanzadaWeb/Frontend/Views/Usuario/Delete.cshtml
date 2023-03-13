@@ -8,73 +8,64 @@
 <div class="col-lg-12">
     <div class="breadcrumb-text">
         <h2>Eliminar usuario</h2>
-        <h4>Seguro en eliminar el siguiente usuario</h4>
-    </div>
-</div><br />
-
-<dl class="col-lg-12">
-    <div class="row">
-        <div class="col-lg-6">
-            <dt class="col-sm-2">
-                @Html.DisplayNameFor(model => model.UsrId)
-            </dt>
-            <dd class="col-sm-10">
-                @Html.DisplayFor(model => model.UsrId)
-            </dd>
-            <dt class="col-sm-2">
-                @Html.DisplayNameFor(model => model.UsrNombre)
-            </dt>
-            <dd class="col-sm-10">
-                @Html.DisplayFor(model => model.UsrNombre)
-            </dd>
-            <dt class="col-sm-2">
-                @Html.DisplayNameFor(model => model.UsrApellido)
-            </dt>
-            <dd class="col-sm-10">
-                @Html.DisplayFor(model => model.UsrApellido)
-            </dd>
-        </div>
-        <div class="col-lg-6">
-            <dt class="col-sm-2">
-                @Html.DisplayNameFor(model => model.UsrEmail)
-            </dt>
-            <dd class="col-sm-10">
-                @Html.DisplayFor(model => model.UsrEmail)
-            </dd>
-            <dt class="col-sm-2">
-                @Html.DisplayNameFor(model => model.UsrPassword)
-            </dt>
-            <dd class="col-sm-10">
-                @Html.DisplayFor(model => model.UsrPassword)
-            </dd>
-            <dt class="col-sm-2">
-                @Html.DisplayNameFor(model => model.UsrRolId)
-            </dt>
-            <dd class="col-sm-10">
-                @Html.DisplayFor(model => model.UsrRolId)
-            </dd>
-            <dt class="col-sm-2">
-                @Html.DisplayNameFor(model => model.UsrMbrId)
-            </dt>
-            <dd class="col-sm-10">
-                @Html.DisplayFor(model => model.UsrMbrId)
-            </dd>
+        <h5>Seguro en borrar este usario</h5>
+        <div class="bt-option">
+            <a asp-action="Index">Inicio</a>
+            <span>@ViewData["Title"]</span>
         </div>
     </div>
+</div>
 
-    <form asp-action="Delete" class="col-lg-12">
-        @Html.HiddenFor(Model=>Model.UsrId)
-        <div class="row">
-            <div class="col-lg-6">
-                <input type="submit" value="Delete" class="btn btn-danger" />
-            </div>
-            <div class="col-lg-6">
-                <a asp-action="Index" class="btn btn-primary">Back to List</a>
-            </div>
+<div class="col-lg-12 mt-4 d-flex justify-content-center">
+    <div class="row room-details-item ">
+        <div class="col-lg-6 rd-text">
+            <table>
+                <tbody>
+                    <tr>
+                        <td class="r-o">@Html.DisplayNameFor(model => model.UsrId):</td>
+                        <td>@Html.DisplayFor(model => model.UsrId)</td>
+                    </tr>
+                    <tr>
+                        <td class="r-o">@Html.DisplayNameFor(model => model.UsrNombre):</td>
+                        <td> @Html.DisplayFor(model => model.UsrNombre)</td>
+                    </tr>
+                    <tr>
+                        <td class="r-o">@Html.DisplayNameFor(model => model.UsrApellido):</td>
+                        <td>@Html.DisplayFor(model => model.UsrApellido)</td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
-    </form>
 
-</dl>
 
+        <div class="col-lg-6 rd-text">
+            <table>
+                <tbody>
+                    <tr>
+                        <td class="r-o"> @Html.DisplayNameFor(model => model.UsrEmail):</td>
+                        <td>@Html.DisplayFor(model => model.UsrEmail)</td>
+                    </tr>
+                    <tr>
+                        <td class="r-o">@Html.DisplayNameFor(model => model.UsrPassword):</td>
+                        <td> @Html.DisplayFor(model => model.UsrPassword)</td>
+                    </tr>
+                    <tr>
+                        <td class="r-o">@Html.DisplayNameFor(model => model.UsrRolId):</td>
+                        <td>@Html.DisplayFor(model => model.UsrRolId)</td>
+                    </tr>
+                    <tr>
+                        <td class="r-o"> @Html.DisplayNameFor(model => model.UsrMbrId):</td>
+                        <td>@Html.DisplayFor(model => model.UsrMbrId)</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<form asp-action="Delete" class="col-lg-12  d-flex justify-content-center mb-4">
+    @Html.HiddenFor(Model=>Model.UsrId)
+    <input type="submit" value="Borrar usuario" class="btn btn-danger w-25" />
+</form>
 
 

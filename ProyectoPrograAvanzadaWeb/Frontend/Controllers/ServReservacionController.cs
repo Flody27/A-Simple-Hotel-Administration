@@ -88,7 +88,7 @@ namespace Frontend.Controllers
         {
             try
             {
-                helper.Delete(payload.SrSvcId);
+                helper.Delete(payload.SrId);
                 return RedirectToAction(nameof(Index));
             }
             catch
