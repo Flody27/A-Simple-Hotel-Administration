@@ -11,6 +11,8 @@ namespace BackEnd.Controllers
     {
         private IHabitacioneDAL habitacioneDAL;
 
+        private HabitacioneDALImpl dal = new HabitacioneDALImpl();
+
         #region Constructor
         public HabitacioneController ()
         {
@@ -71,6 +73,14 @@ namespace BackEnd.Controllers
         }
 
         #endregion
+
+        //[HttpPatch]
+        //public JsonResult BuscarHabitacion([FromBody] BuscarHabitacionesDisponibles consulta)
+        //{
+        //    sp_BuscarHabitacionesDisponibles habitacion = dal.BuscarHabitacion(consulta);
+        //    return new JsonResult(habitacion);
+        //}
+
     }
 }
 

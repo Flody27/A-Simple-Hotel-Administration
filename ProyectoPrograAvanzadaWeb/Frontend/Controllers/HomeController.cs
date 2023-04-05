@@ -1,4 +1,5 @@
-﻿using Frontend.Models;
+﻿using Frontend.Helpers;
+using Frontend.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
@@ -8,15 +9,42 @@ namespace Frontend.Controllers
     {
         private readonly ILogger<HomeController> _logger;
 
+        private ConsultaHabitacionHelper consultaHelper;
+
         public HomeController(ILogger<HomeController> logger)
         {
             _logger = logger;
         }
 
-        public IActionResult Index()
+        public ActionResult Index()
         {
             return View();
         }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Consulta(BuscarHabitaconViewModel consulta) {
+            consultaHelper = new ConsultaHabitacionHelper();
+            HabitacionViewModel habitacion = consultaHelper.consultar(consulta);
+
+            try {
+
+                if (habitacion.HabId != 0)
+                {
+                   
+                    return RedirectToAction("Index", "ReservacionUsuario", habitacion);
+                }
+            }
+            catch(Exception ex)
+            {
+
+                ViewData["ErrorDisponibilidad"] = "No hay habitaciones disponibles";
+
+
+            }
+            return View("Index");
+        }
+
 
         public IActionResult Privacy()
         {

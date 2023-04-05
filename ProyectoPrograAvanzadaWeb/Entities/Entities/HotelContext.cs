@@ -23,6 +23,7 @@ namespace Entities.Entities
         public virtual DbSet<Servicio> Servicios { get; set; } = null!;
         public virtual DbSet<ServiciosReservacione> ServiciosReservaciones { get; set; } = null!;
         public virtual DbSet<Usuario> Usuarios { get; set; } = null!;
+        //public virtual DbSet<sp_BuscarHabitacionesDisponibles> Sp_BuscarHabitacionesDisponibles { get; set; } = null!;
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
