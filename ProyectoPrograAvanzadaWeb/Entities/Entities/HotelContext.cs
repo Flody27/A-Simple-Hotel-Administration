@@ -1,14 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
+using Entities.Authentication;
+using Entities.Utilities;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 
 namespace Entities.Entities
 {
-    public partial class HotelContext : DbContext
+    public partial class HotelContext : IdentityDbContext<ApplicationUser>
     {
         public HotelContext()
         {
+            var optionsBuilder = new DbContextOptionsBuilder<HotelContext>();
+            optionsBuilder.UseSqlServer(Utilities.Util.ConnectionString);
         }
 
         public HotelContext(DbContextOptions<HotelContext> options)
@@ -27,11 +32,8 @@ namespace Entities.Entities
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            if (!optionsBuilder.IsConfigured)
-            {
-#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-                optionsBuilder.UseSqlServer("Server=.;Database=Hotel;Integrated Security=True;Trusted_Connection=True;");
-            }
+            optionsBuilder.UseSqlServer(Util.ConnectionString);
+            base.OnConfiguring(optionsBuilder);
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -194,6 +196,9 @@ namespace Entities.Entities
             });
 
             OnModelCreatingPartial(modelBuilder);
+
+            /*Esto es para un error que se presenta al hacer el add-migration identity*/
+            base.OnModelCreating(modelBuilder);
         }
 
         partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
