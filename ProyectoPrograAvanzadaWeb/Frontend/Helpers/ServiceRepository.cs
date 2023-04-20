@@ -8,6 +8,7 @@
         public ServiceRepository() { 
             Client = new HttpClient();
             Client.BaseAddress = new Uri("http://localhost:5013");
+            Client.DefaultRequestHeaders.Add("ApiKey", "12345");
         }
 
         public HttpResponseMessage GetResponse(string url)
