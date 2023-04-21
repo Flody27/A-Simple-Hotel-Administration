@@ -13,7 +13,7 @@ namespace Frontend.Helpers
             ServiceRepository = new ServiceRepository();
         }
 
-        public TokenModel Login(UsuarioViewModel usuario)
+        public TokenModel Login(LoginViewModel usuario)
         {
             try
             {

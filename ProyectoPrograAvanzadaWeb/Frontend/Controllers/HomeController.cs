@@ -20,6 +20,19 @@ namespace Frontend.Controllers
         {
             return View();
         }
+        public IActionResult Login()
+        {
+            return View();  
+        }
+        [HttpPost]
+        public IActionResult Login(LoginViewModel usuario)
+        {
+            SecurityHelper securityHelper = new SecurityHelper();
+            TokenModel tokenModel = securityHelper.Login(usuario);
+            HttpContext.Session.SetString("token", tokenModel.Token);
+
+            return View();
+        }
 
         [HttpPost]
         [ValidateAntiForgeryToken]

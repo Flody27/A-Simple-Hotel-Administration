@@ -11,6 +11,15 @@
             Client.DefaultRequestHeaders.Add("ApiKey", "12345");
         }
 
+        public ServiceRepository(string token)
+        {
+            Client = new HttpClient();
+            Client.BaseAddress = new Uri("http://localhost:5013");
+            Client.DefaultRequestHeaders.Add("ApiKey", "12345");
+            Client.DefaultRequestHeaders.Authorization =
+                new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
+        }
+
         public HttpResponseMessage GetResponse(string url)
         {
             return Client.GetAsync(url).Result;

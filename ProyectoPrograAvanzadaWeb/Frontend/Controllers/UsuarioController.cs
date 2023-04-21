@@ -30,7 +30,7 @@ namespace Frontend.Controllers
         public ActionResult Details(int id)
         {
             usuarioHelper = new UsuarioHelper();
-            UsuarioViewModel usuario = usuarioHelper.Get(id);
+			UsuarioViewModel usuario = usuarioHelper.Get(id);
 
             return View(usuario);
         }
@@ -42,7 +42,7 @@ namespace Frontend.Controllers
         {
             rolHelper = new RolHelper();
             membresiaHelper = new MembresiaHelper();
-            UsuarioViewModel usuario = new UsuarioViewModel();
+			UsuarioViewModel usuario = new UsuarioViewModel();
             usuario.Roles = rolHelper.GetAll();
             usuario.Membresias = membresiaHelper.GetAll();
 
@@ -75,7 +75,7 @@ namespace Frontend.Controllers
             usuarioHelper = new UsuarioHelper();
             rolHelper = new RolHelper();
             membresiaHelper = new MembresiaHelper();
-            UsuarioViewModel usuario = usuarioHelper.Get(id);
+			UsuarioViewModel usuario = usuarioHelper.Get(id);
             usuario.Roles = rolHelper.GetAll();
             usuario.Membresias = membresiaHelper.GetAll();
 
@@ -106,7 +106,7 @@ namespace Frontend.Controllers
         public ActionResult Delete(int id)
         {
             usuarioHelper = new UsuarioHelper();
-            UsuarioViewModel usuario = usuarioHelper.Get(id);
+			UsuarioViewModel usuario = usuarioHelper.Get(id);
 
             return View(usuario);
         }
