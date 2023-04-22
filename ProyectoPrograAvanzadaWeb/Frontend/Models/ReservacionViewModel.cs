@@ -7,7 +7,7 @@ namespace Frontend.Models
         [DisplayName("Reservacion ID")]
         public int RsvId { get; set; }
         [DisplayName("ID Usuario de Reservacion")]
-        public int? RsvUsrId { get; set; }
+        public string? RsvUsrId { get; set; }
         public IEnumerable<UsuarioViewModel> Usuarios { get; set; }
 
         [DisplayName("ID Habitacion reservada")]

@@ -3,6 +3,9 @@ using DAL;
 using Entities.Entities;
 using DAL.Interfaces;
 using DAL.Implementations;
+using Entities.Authentication;
+using Microsoft.AspNetCore.Identity;
+using System.Security.Claims;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -14,9 +17,11 @@ namespace BackEnd.Controllers
     {
 
         private IReservacionesDAL dal;
+        private readonly UserManager<ApplicationUser> _userManager;
 
-        public ReservacionesController()
+        public ReservacionesController(UserManager<ApplicationUser> userManager)
         {
+            _userManager = userManager;
             dal = new ReservacionesDALImpl(new Entities.Entities.HotelContext());
         }
 
@@ -85,7 +90,8 @@ namespace BackEnd.Controllers
         {
             try
             {
-                /*Persona entity = Convertir(persona);*/
+                var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+                reservacion.RsvUsrId = userId;
                 dal.Add(reservacion);
                 return new JsonResult(reservacion);
             }

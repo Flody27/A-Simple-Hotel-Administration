@@ -1,7 +1,9 @@
 ﻿using Frontend.Helpers;
 using Frontend.Models;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
 
 namespace Frontend.Controllers
 {
@@ -24,6 +26,11 @@ namespace Frontend.Controllers
             return View();
         }
 
+        public ActionResult UsuarioReservacion()
+        {
+            return View();
+        }
+
         // GET: ReservacionUsuarioController/Details/5
         public ActionResult Details(int id)
         {
@@ -43,7 +50,6 @@ namespace Frontend.Controllers
         {
             try
             {
-                model.RsvUsrId = 1;
                 helper.Create(model);
                 return RedirectToAction("Index","Home");
             }

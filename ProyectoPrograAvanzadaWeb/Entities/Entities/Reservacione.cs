@@ -11,7 +11,7 @@ namespace Entities.Entities
         }
 
         public int RsvId { get; set; }
-        public int? RsvUsrId { get; set; }
+        public string? RsvUsrId { get; set; }
         public int? RsvHabId { get; set; }
         public DateTime? RsvFechaEntrada { get; set; }
         public DateTime? RsvFechaSalida { get; set; }
