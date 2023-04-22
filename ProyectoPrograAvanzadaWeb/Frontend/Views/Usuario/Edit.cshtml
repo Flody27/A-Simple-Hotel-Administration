@@ -1,17 +1,21 @@
 ﻿@model Frontend.Models.UsuarioViewModel
 
 @{
-    ViewData["Title"] = "Edit";
+    ViewData["Title"] = "Editar usuario";
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 <div class="col-lg-12">
     <div class="breadcrumb-text">
         <h2>Editar usuario</h2>
+        <div class="bt-option">
+            <a asp-action="Index">Inicio</a>
+            <span>@ViewData["Title"]</span>
+        </div>
     </div>
 </div>
 
 
-<div class="col-lg-12 review-add">
+<div class="col-lg-12 review-add mt-4">
 
     <form asp-action="Edit" class="row ra-form">
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
@@ -31,11 +35,16 @@
                 <input asp-for="UsrApellido" class="form-control" />
                 <span asp-validation-for="UsrApellido" class="text-danger"></span>
             </div>
+          
+
             <div class="form-group">
-                <label asp-for="UsrEmail" class="control-label"></label>
-                <input asp-for="UsrEmail" class="form-control" />
-                <span asp-validation-for="UsrEmail" class="text-danger"></span>
+                <label asp-for="UsrMbrId" class="control-label"></label>
+                <div>
+                    @Html.DropDownListFor(model => model.UsrMbrId, new SelectList(Model.Membresias,"MbrId","MbrNombre"),"Seleccione una membresia",Model.UsrMbrId)
+                </div>
+                <span asp-validation-for="UsrMbrId" class="text-danger"></span>
             </div>
+
         </div>
 
         <div class="col-lg-6">
@@ -45,27 +54,26 @@
                 <span asp-validation-for="UsrPassword" class="text-danger"></span>
             </div>
             <div class="form-group">
+                <label asp-for="UsrEmail" class="control-label"></label>
+                <input asp-for="UsrEmail" class="form-control" />
+                <span asp-validation-for="UsrEmail" class="text-danger"></span>
+            </div>
+            <div class="form-group">
                 <label asp-for="UsrRolId" class="control-label"></label>
-                @Html.DropDownListFor(model => model.UsrRolId, new SelectList(Model.Roles,"RolId","RolDescripcion"),"Seleccione el rol del usuario",Model.UsrRolId)
+                <div>
+                    @Html.DropDownListFor(model => model.UsrRolId, new SelectList(Model.Roles,"RolId","RolDescripcion"),"Seleccione el rol del usuario",Model.UsrRolId)
+                </div>
                 <span asp-validation-for="UsrRolId" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="UsrMbrId" class="control-label"></label>
-                @Html.DropDownListFor(model => model.UsrMbrId, new SelectList(Model.Membresias,"MbrId","MbrNombre"),"Seleccione una membresia",Model.UsrMbrId)
-                <span asp-validation-for="UsrMbrId" class="text-danger"></span>
-            </div>
+
         </div>
 
-        <div class="col-lg-12">
+        <div class="col-lg-12 mt-4">
             <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-success" />
+                <input type="submit" value="Guardar cambios" class="btn btn-success" style="color:#eeeeee" />
             </div>
         </div>
     </form>
-</div>
-
-<div class="col-lg-12">
-    <a asp-action="Index">Back to List</a>
 </div>
 
 @section Scripts {
