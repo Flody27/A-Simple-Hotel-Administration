@@ -5,6 +5,7 @@ namespace Frontend.Models
 {
     public class UsuarioViewModel
     {
+
         [DisplayName("ID")]
         public int UsrId { get; set; }
         [DisplayName("Nombre")]
@@ -21,7 +22,7 @@ namespace Frontend.Models
         [DisplayName("Membresia")]
         public int? UsrMbrId { get; set; }
         public IEnumerable<MembresiaViewModel> Membresias { get; set; }
-
+        
 
     }
 }
