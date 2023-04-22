@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@using System.Security.Claims
+<!DOCTYPE html>
 <html lang="zxx">
 
 <head>
@@ -47,7 +48,7 @@
         </div>
         <div class="header-configure-area">
             <div class="language-option">
-                <img src="img/flag.jpg" alt="">
+                <img src="img/user.png" alt="">
                 <span>EN <i class="fa fa-angle-down"></i></span>
                 <div class="flag-dropdown">
                     <ul>
@@ -96,29 +97,51 @@
             <div class="container">
                 <div class="row">
                     <div class="col-lg-6">
-                        <ul class="tn-left">
+                        @*<ul class="tn-left">
                             <li><i class="fa fa-phone"></i> (12) 345 67890</li>
                             <li><i class="fa fa-envelope"></i> info.colorlib@gmail.com</li>
-                        </ul>
+                        </ul>*@
                     </div>
                     <div class="col-lg-6">
                         <div class="tn-right">
-                            <div class="top-social">
+                            @*<div class="top-social">
                                 <a href="#"><i class="fa fa-facebook"></i></a>
                                 <a href="#"><i class="fa fa-twitter"></i></a>
                                 <a href="#"><i class="fa fa-tripadvisor"></i></a>
                                 <a href="#"><i class="fa fa-instagram"></i></a>
-                            </div>
-                            <a href="#" class="bk-btn">Reserva ya</a>
+                            </div>*@
+                            @*<a href="#" class="bk-btn">Reserva ya</a>*@
                             <div class="language-option">
-                                <img src="img/flag.jpg" alt="">
-                                <span>EN <i class="fa fa-angle-down"></i></span>
-                                <div class="flag-dropdown">
-                                    <ul>
-                                        <li><a href="#">Zi</a></li>
-                                        <li><a href="#">Fr</a></li>
-                                    </ul>
-                                </div>
+                                <img src="img/user.png" alt="">
+
+                                @if (User.Identity.IsAuthenticated)
+                                {
+                                    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm" }))
+                                    {
+                                        @Html.AntiForgeryToken()
+                                        <span>EN <i class="fa fa-angle-down"></i></span>
+                                        <div class="flag-dropdown">
+                                            <ul>
+                                                <li><a href="#">Zi</a></li>
+                                                <li><a href="#">Fr</a></li>
+                                                <li>
+                                                    <a href="javascript:document.getElementById('logoutForm').submit()">
+                                                        Log Out
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </div>
+
+                                    }
+                                }
+                                else
+                                {
+
+                                    <a class="link-primary" href="@Url.Action("Login", "Account")">
+                                        Iniciar sesión
+                                    </a>
+                                }
+
                             </div>
                         </div>
                     </div>
