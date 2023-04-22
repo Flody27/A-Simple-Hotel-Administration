@@ -27,7 +27,7 @@ namespace Frontend.Helpers
         public UsuarioViewModel Get(int id)
         {
 
-            UsuarioViewModel usuario;
+			UsuarioViewModel usuario;
 
             HttpResponseMessage responseMessage = serviceRepository.GetResponse("/api/Usuario/" + id.ToString());
             var content = responseMessage.Content.ReadAsStringAsync().Result;
