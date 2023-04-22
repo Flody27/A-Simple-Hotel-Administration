@@ -1,11 +1,13 @@
 ﻿using DAL.Interfaces;
 using Entities.Entities;
+using Microsoft.Data.SqlClient;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace DAL.Implementations
 {
@@ -61,11 +63,55 @@ namespace DAL.Implementations
             Habitacione habitaciones;
             using (UnidadDeTrabajo<Habitacione> unidad = new UnidadDeTrabajo<Habitacione>(context))
             {
-               
-                habitaciones= unidad.genericDAL.Get(id);
+
+                habitaciones = unidad.genericDAL.Get(id);
             }
             return habitaciones;
 
+        }
+
+
+
+        public sp_BuscarHabitacionesDisponibles BuscarHabitacion(BuscarHabitacionesDisponibles entity)
+        {
+            try
+            {
+                using (var conn = new SqlConnection("Server=localhost\\SQLEXPRESS;Database=Hotel;Integrated Security=True;Trusted_Connection=True;"))
+                {
+                    conn.Open();
+                    using (var cmd = new SqlCommand("BuscarHabitacionesDisponibles", conn))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.Parameters.AddWithValue("@Cant_camas", entity.CantCamas);
+                        cmd.Parameters.AddWithValue("@Entrada", entity.Entrada);
+                        cmd.Parameters.AddWithValue("@Salida", entity.Salida);
+
+                        using (var reader = cmd.ExecuteReader())
+                        {
+
+                            if (reader.Read())
+                            {
+                                return new sp_BuscarHabitacionesDisponibles
+                                {
+                                    HabId = (int)reader[0],
+                                    HabNumPuerta = (int)reader[1],
+                                    HabCantCamas = (int)reader[2],
+                                    HabCantBannos = (int)reader[3],
+                                    HabPrecioPorNoche = (double)reader[4],
+                                    HabActiva = (bool)reader[5],
+
+                                };
+                            }
+                        }
+
+                    }
+                    return null;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
         }
 
         public IEnumerable<Habitacione> GetAll()

@@ -1,6 +1,7 @@
 ﻿using DAL.Implementations;
 using DAL.Interfaces;
 using Entities.Entities;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BackEnd.Controllers
@@ -20,6 +21,7 @@ namespace BackEnd.Controllers
 
         #region Consultar
         // GET: api/<CategoryController>
+        [Authorize]
         [HttpGet]
         public JsonResult Get()
         {
