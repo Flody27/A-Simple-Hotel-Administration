@@ -1,5 +1,6 @@
 ﻿using DAL.Interfaces;
 using Entities.Entities;
+using Entities.Utilities;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -76,7 +77,7 @@ namespace DAL.Implementations
         {
             try
             {
-                using (var conn = new SqlConnection("Server=localhost\\SQLEXPRESS;Database=Hotel;Integrated Security=True;Trusted_Connection=True;"))
+                using (var conn = new SqlConnection(Util.ConnectionString))
                 {
                     conn.Open();
                     using (var cmd = new SqlCommand("BuscarHabitacionesDisponibles", conn))
@@ -99,7 +100,6 @@ namespace DAL.Implementations
                                     HabCantBannos = (int)reader[3],
                                     HabPrecioPorNoche = (double)reader[4],
                                     HabActiva = (bool)reader[5],
-
                                 };
                             }
                         }
@@ -107,6 +107,7 @@ namespace DAL.Implementations
                     }
                     return null;
                 }
+
             }
             catch (Exception ex)
             {

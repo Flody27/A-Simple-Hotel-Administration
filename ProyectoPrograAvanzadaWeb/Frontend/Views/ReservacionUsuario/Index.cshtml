@@ -33,16 +33,6 @@
                             <h3>
                                 Premium King Room
                             </h3>
-                            @*<div class="rdt-right">
-                            <div class="rating">
-                            <i class="icon_star"></i>
-                            <i class="icon_star"></i>
-                            <i class="icon_star"></i>
-                            <i class="icon_star"></i>
-                            <i class="icon_star-half_alt"></i>
-                            </div>
-                            <a href="#">Booking Now</a>
-                            </div>*@
                         </div>
                         <h2>@ViewData["PrecioHab"]$ <span>/Pornoche</span></h2>
                         <table>
@@ -70,88 +60,8 @@
                             achievement of a lifetime. It can be similar to sojourning with your residence as you
                             search the various sites of our great land, America.
                         </p>
-                        <p>
-                            The two commonly known recreational vehicle classes are the motorized and towable.
-                            Towable rvs are the travel trailers and the fifth wheel. The rv travel trailer or fifth
-                            wheel has the attraction of getting towed by a pickup or a car, thus giving the
-                            adaptability of possessing transportation for you when you are parked at your campsite.
-                        </p>
                     </div>
                 </div>
-
-                @*<div class="rd-reviews">
-                <h4>Reviews</h4>
-                <div class="review-item">
-                <div class="ri-pic">
-                <img src="img/room/avatar/avatar-1.jpg" alt="">
-                </div>
-                <div class="ri-text">
-                <span>27 Aug 2019</span>
-                <div class="rating">
-                <i class="icon_star"></i>
-                <i class="icon_star"></i>
-                <i class="icon_star"></i>
-                <i class="icon_star"></i>
-                <i class="icon_star-half_alt"></i>
-                </div>
-                <h5>Brandon Kelley</h5>
-                <p>
-                Neque porro qui squam est, qui dolorem ipsum quia dolor sit amet, consectetur,
-                adipisci velit, sed quia non numquam eius modi tempora. incidunt ut labore et dolore
-                magnam.
-                </p>
-                </div>
-                </div>
-                <div class="review-item">
-                <div class="ri-pic">
-                <img src="img/room/avatar/avatar-2.jpg" alt="">
-                </div>
-                <div class="ri-text">
-                <span>27 Aug 2019</span>
-                <div class="rating">
-                <i class="icon_star"></i>
-                <i class="icon_star"></i>
-                <i class="icon_star"></i>
-                <i class="icon_star"></i>
-                <i class="icon_star-half_alt"></i>
-                </div>
-                <h5>Brandon Kelley</h5>
-                <p>
-                Neque porro qui squam est, qui dolorem ipsum quia dolor sit amet, consectetur,
-                adipisci velit, sed quia non numquam eius modi tempora. incidunt ut labore et dolore
-                magnam.
-                </p>
-                </div>
-                </div>
-                </div>
-                <div class="review-add">*@
-
-                @*<h4>Add Review</h4>
-                <form action="#" class="ra-form">
-                <div class="row">
-                <div class="col-lg-6">
-                <input type="text" placeholder="Name*">
-                </div>
-                <div class="col-lg-6">
-                <input type="text" placeholder="Email*">
-                </div>
-                <div class="col-lg-12">
-                <div>
-                <h5>You Rating:</h5>
-                <div class="rating">
-                <i class="icon_star"></i>
-                <i class="icon_star"></i>
-                <i class="icon_star"></i>
-                <i class="icon_star"></i>
-                <i class="icon_star-half_alt"></i>
-                </div>
-                </div>
-                <textarea placeholder="Your Review"></textarea>
-                <button type="submit">Submit Now</button>
-                </div>
-                </div>
-                </form>
-                </div>*@
 
             </div>
             <div class="col-lg-4">
@@ -163,24 +73,30 @@
                             var precioHab = ViewData["PrecioHab"];
                         }
 
-                        <input hidden type="number" value="@precioHab" asp-for="RsvPrecioFinal" />
+                       @* <input hidden type="number" value="@precioHab" asp-for="RsvPrecioFinal" />*@
                         <input hidden type="number" value="@idHab" asp-for="RsvHabId" />
-                       
+                        <input hidden type="number" id="precio" value="@precioHab" asp-for="RsvHabId" />
+
                         <div class="select-option">
-                            <label for="CantCamas"></label>
-                            <input for="CantCamas" class="form-control" />
+                            <label for="CantCamas">Cantidad de camas</label>
+                            <input for="CantCamas" class="form-control" id="cantCamas" disabled/>
                         </div>
                         <div class="check-date">
                             <label asp-for ="RsvFechaEntrada"></label>
-                            <input type="text" class="date-input" id="date-in" asp-for="RsvFechaEntrada">
+                            <input type="text" class="date-input" id="date-in" asp-for="RsvFechaEntrada" disabled>
                             <i class="icon_calendar"></i>
                         </div>
                         <div class="check-date">
                             <label asp-for="RsvFechaSalida"></label>
-                            <input type="text" class="date-input" id="date-out" asp-for="RsvFechaSalida">
+                            <input type="text" class="date-input" id="date-out" asp-for="RsvFechaSalida" disabled>
                             <i class="icon_calendar"></i>
                         </div>
-                        <button type="submit">Reservar habitacion</button>
+                        <div class="select-option">
+                            <label for="Precio Final">Precio final</label>
+                            <input asp-for="RsvPrecioFinal" class="form-control" id="precioFinal" disabled/>
+                        </div>
+
+                        <button type="submit" id="ReservarHabitacion">Confirmar reservacion</button>
                     </form>
                 </div>
             </div>
@@ -188,3 +104,4 @@
     </div>
 </section>
 <!-- Room Details Section End -->
+<script src="~/js/Reservacion.js"></script>
