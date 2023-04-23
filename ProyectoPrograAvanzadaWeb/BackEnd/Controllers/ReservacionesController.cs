@@ -6,6 +6,7 @@ using DAL.Implementations;
 using Entities.Authentication;
 using Microsoft.AspNetCore.Identity;
 using System.Security.Claims;
+using Microsoft.AspNetCore.Authorization;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -85,12 +86,13 @@ namespace BackEnd.Controllers
         }
 
         // POST api/<ReservacionesController>
+        [Authorize]
         [HttpPost]
         public JsonResult Post([FromBody] Reservacione reservacion)
         {
             try
             {
-                var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+                var userId = HttpContext.User.FindFirstValue(ClaimTypes.Name);
                 reservacion.RsvUsrId = userId;
                 dal.Add(reservacion);
                 return new JsonResult(reservacion);

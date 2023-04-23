@@ -12,18 +12,32 @@ namespace Frontend.Controllers
         private UsuarioHelper usuarioHelper;
         private HabitacionHelper habitacionHelper;
 
-        public ReservacionController()
+/*        public ReservacionController()
         {
-            helper = new ReservacionHelper();
-        }
-
+            string token = HttpContext.Session.GetString("token");
+            helper = new ReservacionHelper(token);
+        }*/
 
         // GET: ReservacionController
         public ActionResult Index()
         {
-            List<ReservacionViewModel> reservaciones = helper.GetAll();
-
-            return View(reservaciones);
+            try
+            {
+                string token = HttpContext.Session.GetString("token");
+                if (string.IsNullOrEmpty(token))
+                {
+                    return RedirectToAction("Login", "Home");
+                }
+                helper = new ReservacionHelper(token);
+                List<ReservacionViewModel> reservaciones = helper.GetAll();
+                return View(reservaciones);
+            }
+            catch(Exception ex)
+            {
+                //ver si se puede agregar un mensaje toast
+                return RedirectToAction("Index", "Home");
+            }
+            
         }
 
         // GET: ReservacionController/Details/5
@@ -66,7 +80,6 @@ namespace Frontend.Controllers
         {
             habitacionHelper = new HabitacionHelper();
             usuarioHelper = new UsuarioHelper();
-            helper = new ReservacionHelper();
             ReservacionViewModel reservacion = helper.Get(id);
             reservacion.Usuarios = usuarioHelper.GetAll();
             reservacion.Habitaciones = habitacionHelper.GetAll();

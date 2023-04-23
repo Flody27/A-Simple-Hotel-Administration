@@ -18,7 +18,7 @@ namespace Entities.Entities
         public double? RsvPrecioFinal { get; set; }
 
         public virtual Habitacione? RsvHab { get; set; }
-        public virtual Usuario? RsvUsr { get; set; }
+        //public virtual Usuario? RsvUsr { get; set; }
         public virtual ICollection<ServiciosReservacione> ServiciosReservaciones { get; set; }
     }
 }
