@@ -1,7 +1,10 @@
 ﻿using Frontend.Helpers;
 using Frontend.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
 
 namespace Frontend.Controllers
 {
@@ -9,9 +12,6 @@ namespace Frontend.Controllers
     {
         private ReservacionHelper helper;
 
-        public ReservacionUsuarioController() { 
-            helper = new ReservacionHelper();
-        }
 
         // GET: ReservacionUsuarioController
         public ActionResult Index(HabitacionViewModel habitacion)
@@ -21,6 +21,11 @@ namespace Frontend.Controllers
             ViewData["BañosHab"] = habitacion.HabCantBannos;
             ViewData["camasoHab"] = habitacion.HabCantCamas;
             ViewData["IDHab"] = habitacion.HabId;
+            return View();
+        }
+
+        public ActionResult UsuarioReservacion()
+        {
             return View();
         }
 
@@ -43,7 +48,8 @@ namespace Frontend.Controllers
         {
             try
             {
-                model.RsvUsrId = 1;
+                string token = HttpContext.Session.GetString("token");
+                helper = new ReservacionHelper(token);
                 helper.Create(model);
                 return RedirectToAction("Index","Home");
             }

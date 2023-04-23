@@ -1,4 +1,5 @@
-﻿@using System.Security.Claims
+﻿@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor Accessor
 <!DOCTYPE html>
 <html lang="zxx">
 
@@ -114,21 +115,16 @@
                             <div class="language-option">
                                 <img src="img/user.png" alt="">
 
-                                @if (User.Identity.IsAuthenticated)
+                                @if (Accessor.HttpContext.Session.GetString("token") != null)
                                 {
                                     using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm" }))
                                     {
                                         @Html.AntiForgeryToken()
-                                        <span>EN <i class="fa fa-angle-down"></i></span>
+                                        <span>Mi cuenta <i class="fa fa-angle-down"></i></span>
                                         <div class="flag-dropdown">
                                             <ul>
-                                                <li><a href="#">Zi</a></li>
-                                                <li><a href="#">Fr</a></li>
-                                                <li>
-                                                    <a href="javascript:document.getElementById('logoutForm').submit()">
-                                                        Log Out
-                                                    </a>
-                                                </li>
+                                                <li><a href="@Url.Action("UsuarioReservacion","ReservacionUsuario")">Reservaciones</a></li>
+                                                <li><a href="#">Cerrar sesión</a></li>
                                             </ul>
                                         </div>
 
@@ -137,7 +133,7 @@
                                 else
                                 {
 
-                                    <a class="link-primary" href="@Url.Action("Login", "Account")">
+                                    <a class="link-primary" href="@Url.Action("Login", "Home")">
                                         Iniciar sesión
                                     </a>
                                 }

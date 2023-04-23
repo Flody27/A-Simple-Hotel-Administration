@@ -1,6 +1,7 @@
 ﻿using FrontEnd.Helpers;
 using Frontend.Models;
 using Newtonsoft.Json;
+using NuGet.Protocol.Core.Types;
 
 namespace Frontend.Helpers
 {
@@ -9,9 +10,14 @@ namespace Frontend.Helpers
 
         private ServiceRepository serviceRepository;
 
-        public ReservacionHelper()
+/*        public ReservacionHelper()
         {
             serviceRepository = new ServiceRepository();
+        }*/
+
+        public ReservacionHelper(string token)
+        {
+            serviceRepository = new ServiceRepository(token);
         }
 
         public List<ReservacionViewModel> GetAll()
