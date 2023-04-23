@@ -66,34 +66,32 @@
             </div>
             <div class="col-lg-4">
                 <div class="room-booking">
+                    @{
+                        var idHab = ViewData["IDHab"];
+                        var precioHab = ViewData["PrecioHab"];
+                    }
+                    <input hidden type="number" id="precio" value="@precioHab" />
                     <h3>Reserva</h3>
                     <form asp-action="Create">
-                        @{
-                            var idHab = ViewData["IDHab"];
-                            var precioHab = ViewData["PrecioHab"];
-                        }
-
-                       @* <input hidden type="number" value="@precioHab" asp-for="RsvPrecioFinal" />*@
                         <input hidden type="number" value="@idHab" asp-for="RsvHabId" />
-                        <input hidden type="number" id="precio" value="@precioHab" asp-for="RsvHabId" />
-
+                       
                         <div class="select-option">
                             <label for="CantCamas">Cantidad de camas</label>
-                            <input for="CantCamas" class="form-control" id="cantCamas" disabled/>
+                            <input for="CantCamas" class="form-control" id="cantCamas" readonly/>
                         </div>
                         <div class="check-date">
                             <label asp-for ="RsvFechaEntrada"></label>
-                            <input type="text" class="date-input" id="date-in" asp-for="RsvFechaEntrada" disabled>
+                            <input type="text" class="date-input" id="date-in" asp-for="RsvFechaEntrada" readonly>
                             <i class="icon_calendar"></i>
                         </div>
                         <div class="check-date">
                             <label asp-for="RsvFechaSalida"></label>
-                            <input type="text" class="date-input" id="date-out" asp-for="RsvFechaSalida" disabled>
+                            <input type="text" class="date-input" id="date-out" asp-for="RsvFechaSalida" readonly>
                             <i class="icon_calendar"></i>
                         </div>
                         <div class="select-option">
                             <label for="Precio Final">Precio final</label>
-                            <input asp-for="RsvPrecioFinal" class="form-control" id="precioFinal" disabled/>
+                            <input asp-for="RsvPrecioFinal" class="form-control" id="precioFinal" readonly/>
                         </div>
 
                         <button type="submit" id="ReservarHabitacion">Confirmar reservacion</button>
