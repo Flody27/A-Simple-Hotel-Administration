@@ -1,16 +1,17 @@
 ﻿@model Frontend.Models.LoginViewModel
 
 @{
-    ViewData["Title"] = "Login";
+    ViewData["Title"] = "Register";
     Layout = "~/Views/Shared/_LoginLayout.cshtml";
 }
+
 
 <div class="row" style="justify-content:center;">
     <div class="col-md-4">
         <div class="booking-form">
-            <h2 align="center" style="font-family: Arial, sans-serif;">Iniciar sesión en Sona</h2><br />
+            <h2 align="center" style="font-family: Arial, sans-serif;">Regístrate en Sona</h2><br />
 
-            <form asp-action="Login">
+            <form asp-action="Register">
                 <div asp-validation-summary="ModelOnly" class="hero-text"></div>
                 <div class="form-group">
                     <label asp-for="UserName" class="control-label"></label>
@@ -18,15 +19,19 @@
                     <span asp-validation-for="UserName" class="hero-text"></span>
                 </div>
                 <div class="form-group">
+                    <label asp-for="Email" class="control-label"></label>
+                    <input asp-for="Email" class="form-control" />
+                    <span asp-validation-for="Email" class="hero-text"></span>
+                </div>
+                <div class="form-group">
                     <label asp-for="Password" class="control-label"></label>
                     <input asp-for="Password" class="form-control" />
                     <span asp-validation-for="Password" class="hero-text"></span>
                 </div>
-                <div class="about-text">
+                <div align="center">
                     <br />
-                    <input type="submit" value="Iniciar Sesión" class="btn btn-primary" />
-                    <a asp-action="Index" style="margin-left: 20px;">⇦ Volver</a><br /><br />
-                    <p>Si aún no tienes una cuenta <a asp-action="Register">Registrate aquí. </a></p>
+                    <input type="submit" value="Registrarse" class="btn btn-primary" />
+                    <a asp-action="Login" style="margin-left: 20px;">⇦ Volver</a><br /><br />
                     <br />
                 </div>
             </form>

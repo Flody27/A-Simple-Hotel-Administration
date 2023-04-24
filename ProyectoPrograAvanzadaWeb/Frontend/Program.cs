@@ -24,4 +24,9 @@ app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
 
+app.MapControllerRoute(
+    name: "ReservacionesUsuario",
+    pattern: "mis-reservaciones",
+    defaults: new { controller = "ReservacionUsuario", action = "UsuarioReservacion" });
+
 app.Run();

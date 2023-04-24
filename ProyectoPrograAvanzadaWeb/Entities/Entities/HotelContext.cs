@@ -29,6 +29,7 @@ namespace Entities.Entities
         public virtual DbSet<ServiciosReservacione> ServiciosReservaciones { get; set; } = null!;
         public virtual DbSet<Usuario> Usuarios { get; set; } = null!;
         //public virtual DbSet<sp_BuscarHabitacionesDisponibles> Sp_BuscarHabitacionesDisponibles { get; set; } = null!;
+        public virtual DbSet<sp_ReservacionPorUsuario> SP_ReservacionPorUsuario { get; set; } = null!;
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -95,7 +96,8 @@ namespace Entities.Entities
                     .HasForeignKey(d => d.RsvHabId)
                     .HasConstraintName("FK__Reservaci__RSV_H__32E0915F");
 
-/*                entity.HasOne(d => d.RsvUsr)
+/*               /// Para evitar errores de contruccion de modelos en EF ///
+ *                entity.HasOne(d => d.RsvUsr)
                     .WithMany(p => p.Reservaciones)
                     .HasForeignKey(d => d.RsvUsrId)
                     .HasConstraintName("FK__Reservaci__RSV_U__75A278F5");*/

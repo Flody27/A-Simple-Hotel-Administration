@@ -31,5 +31,29 @@ namespace Frontend.Helpers
                 throw;
             }
         }
+
+
+        public TokenModel Register(LoginViewModel usuario)
+        {
+            try
+            {
+                TokenModel TokenModel;
+
+                HttpResponseMessage responseMessage = ServiceRepository.PostResponse("api/Authenticate/register", usuario);
+                if (responseMessage.IsSuccessStatusCode)
+                {
+                    //Iniciar sesion automaticamente
+                    TokenModel = Login(usuario);
+                    return TokenModel;
+                };
+                return null;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
     }
 }

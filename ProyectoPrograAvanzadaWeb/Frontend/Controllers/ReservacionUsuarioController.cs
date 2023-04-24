@@ -23,6 +23,30 @@ namespace Frontend.Controllers
             return View();
         }
 
+        [HttpGet("mis-reservaciones")]
+        public ActionResult UsuarioReservacion()
+        {
+            string token = HttpContext.Session.GetString("token");
+            helper = new ReservacionHelper(token);
+            List<ReservacionUsuarioViewModel> reservaciones = helper.GetByUser();
+            return View(reservaciones);
+        }
+
+
+        // GET: ReservacionUsuarioController/Details/5
+        public ActionResult Details(int id)
+        {
+            return View();
+        }
+
+        //// GET: ReservacionUsuarioController/Create
+        //public ActionResult Create()
+        //{
+        //    return View();
+        //}
+
+        // POST: ReservacionUsuarioController/Create
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create(ReservacionViewModel model)

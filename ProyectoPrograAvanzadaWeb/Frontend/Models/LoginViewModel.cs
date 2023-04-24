@@ -6,10 +6,13 @@ namespace Frontend.Models
     public class LoginViewModel
     {
 
-        public string UserName { get; set; } 
+        [DisplayName("Usuario")]
+        public string UserName { get; set; }
+        [DisplayName("Correo electronico")]
         public string Email { get; set; }
 
-		[DataType(DataType.Password)]
+        [DisplayName("Contrasena")]
+        [DataType(DataType.Password)]
 		public string Password { get; set; } 
 
     }

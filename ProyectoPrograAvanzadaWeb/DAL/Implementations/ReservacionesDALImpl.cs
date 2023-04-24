@@ -1,11 +1,15 @@
 ﻿using DAL.Interfaces;
 using Entities.Entities;
+using Entities.Migrations;
+using Microsoft.Data.SqlClient;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace DAL.Implementations
 {
@@ -60,6 +64,8 @@ namespace DAL.Implementations
             return reservacion;
         }
 
+
+
         public IEnumerable<Reservacione> GetAll()
         {
             IEnumerable<Reservacione> reservaciones = null;
@@ -68,6 +74,29 @@ namespace DAL.Implementations
                 reservaciones = unit.genericDAL.GetAll();
             }
             return reservaciones;
+        }
+
+        public IEnumerable<sp_ReservacionPorUsuario> GetByUser(string userID)
+        {
+            List<sp_ReservacionPorUsuario> resultado;
+
+            try
+            {
+                string sql = "exec [dbo].[sp_reservacionPorUsuario] @usuario";
+                var param = new SqlParameter("@usuario", userID);
+                resultado = context.SP_ReservacionPorUsuario
+                      .FromSqlRaw(sql, param)
+                      .ToList();
+
+                return resultado;
+
+
+            }
+            catch(Exception ex) 
+            {
+                return null;
+            }
+
         }
 
         public bool Remove(Reservacione entity)

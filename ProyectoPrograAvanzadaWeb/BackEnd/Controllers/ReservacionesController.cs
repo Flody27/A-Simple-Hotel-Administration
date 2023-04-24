@@ -85,6 +85,31 @@ namespace BackEnd.Controllers
             }
         }
 
+        // GET: api/<ReservacionesController>
+        [Authorize]
+        [HttpGet]
+        [Route("usuarioReservaciones")]
+        public JsonResult ReservUsuario()
+        {
+            var userId = HttpContext.User.FindFirstValue(ClaimTypes.Name);
+            try
+            {
+                ReservacionesDALImpl dal = new ReservacionesDALImpl();
+                IEnumerable<sp_ReservacionPorUsuario> reservaciones = dal.GetByUser(userId);
+                List<sp_ReservacionPorUsuario> lista = new List<sp_ReservacionPorUsuario>();
+
+                foreach (var reservacion in reservaciones)
+                {
+                    lista.Add(reservacion);
+                }
+                return new JsonResult(lista);
+            }
+            catch (Exception e)
+            {
+                return new JsonResult(null);
+            }
+        }
+
         // POST api/<ReservacionesController>
         [Authorize]
         [HttpPost]

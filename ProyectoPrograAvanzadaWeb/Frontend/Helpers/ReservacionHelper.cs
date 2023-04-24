@@ -43,6 +43,18 @@ namespace Frontend.Helpers
             return Reservacion;
         }
 
+        public List<ReservacionUsuarioViewModel> GetByUser()
+        {
+            List<ReservacionUsuarioViewModel> lista;
+
+            HttpResponseMessage responseMessage = serviceRepository.GetResponse("/api/Reservaciones/usuarioReservaciones");
+            var content = responseMessage.Content.ReadAsStringAsync().Result;
+            lista = JsonConvert.DeserializeObject<List<ReservacionUsuarioViewModel>>(content);
+
+            return lista;
+        }
+
+
         public ReservacionViewModel Create(ReservacionViewModel payload)
         {
             ReservacionViewModel Reservacion;
