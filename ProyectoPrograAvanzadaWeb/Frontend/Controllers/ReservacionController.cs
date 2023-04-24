@@ -78,6 +78,8 @@ namespace Frontend.Controllers
         // GET: ReservacionController/Edit/5
         public ActionResult Edit(int id)
         {
+            string token = HttpContext.Session.GetString("token");
+            helper = new ReservacionHelper(token);
             habitacionHelper = new HabitacionHelper();
             usuarioHelper = new UsuarioHelper();
             ReservacionViewModel reservacion = helper.Get(id);
@@ -95,6 +97,8 @@ namespace Frontend.Controllers
         {
             try
             {
+                string token = HttpContext.Session.GetString("token");
+                helper = new ReservacionHelper(token);
                 helper.Update(payload);
                 return RedirectToAction(nameof(Index));
             }
@@ -107,6 +111,8 @@ namespace Frontend.Controllers
         // GET: ReservacionController/Delete/5
         public ActionResult Delete(int id)
         {
+            string token = HttpContext.Session.GetString("token");
+            helper = new ReservacionHelper(token);
             ReservacionViewModel reservacion = helper.Get(id);
             return View(reservacion);
         }
@@ -118,6 +124,8 @@ namespace Frontend.Controllers
         {
             try
             {
+                string token = HttpContext.Session.GetString("token");
+                helper = new ReservacionHelper(token);
                 helper.Delete(payload.RsvId);
                 return RedirectToAction(nameof(Index));
             }
