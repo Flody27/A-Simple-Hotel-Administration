@@ -78,22 +78,11 @@ namespace Frontend.Controllers
             consultaHelper = new ConsultaHabitacionHelper();
             HabitacionViewModel habitacion = consultaHelper.consultar(consulta);
 
-            try {
-
-                if (habitacion.HabId != 0)
-                {
-                   
-                    return RedirectToAction("Index", "ReservacionUsuario", habitacion);
-                }
-            }
-            catch(Exception ex)
+            if (habitacion == null)
             {
-
-                ViewData["ErrorDisponibilidad"] = "No hay habitaciones disponibles";
-
-
+                return RedirectToAction("ErrorReservacion", "ReservacionUsuario");
             }
-            return View("Index");
+            return RedirectToAction("Index", "ReservacionUsuario", habitacion);
         }
 
 
