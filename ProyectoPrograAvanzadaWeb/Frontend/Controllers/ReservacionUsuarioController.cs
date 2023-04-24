@@ -24,10 +24,15 @@ namespace Frontend.Controllers
             return View();
         }
 
+        [HttpGet("mis-reservaciones")]
         public ActionResult UsuarioReservacion()
         {
-            return View();
+            string token = HttpContext.Session.GetString("token");
+            helper = new ReservacionHelper(token);
+            List<ReservacionUsuarioViewModel> reservaciones = helper.GetByUser();
+            return View(reservaciones);
         }
+
 
         // GET: ReservacionUsuarioController/Details/5
         public ActionResult Details(int id)

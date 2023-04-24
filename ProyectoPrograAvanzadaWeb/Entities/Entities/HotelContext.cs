@@ -96,7 +96,8 @@ namespace Entities.Entities
                     .HasForeignKey(d => d.RsvHabId)
                     .HasConstraintName("FK__Reservaci__RSV_H__32E0915F");
 
-/*                entity.HasOne(d => d.RsvUsr)
+/*               /// Para evitar errores de contruccion de modelos en EF ///
+ *                entity.HasOne(d => d.RsvUsr)
                     .WithMany(p => p.Reservaciones)
                     .HasForeignKey(d => d.RsvUsrId)
                     .HasConstraintName("FK__Reservaci__RSV_U__75A278F5");*/
