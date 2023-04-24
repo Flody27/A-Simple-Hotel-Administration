@@ -5,10 +5,6 @@ namespace Entities.Entities
 {
     public partial class Usuario
     {
-        public Usuario()
-        {
-            Reservaciones = new HashSet<Reservacione>();
-        }
 
         public int UsrId { get; set; }
         public string? UsrNombre { get; set; }
@@ -20,6 +16,6 @@ namespace Entities.Entities
 
         public virtual Membresia? UsrMbr { get; set; }
         public virtual Role? UsrRol { get; set; }
-        public virtual ICollection<Reservacione> Reservaciones { get; set; }
+        //public virtual ICollection<Reservacione> Reservaciones { get; set; }
     }
 }

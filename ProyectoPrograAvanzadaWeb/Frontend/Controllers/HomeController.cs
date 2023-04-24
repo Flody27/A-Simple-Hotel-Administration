@@ -27,11 +27,19 @@ namespace Frontend.Controllers
         [HttpPost]
         public IActionResult Login(LoginViewModel usuario)
         {
-            SecurityHelper securityHelper = new SecurityHelper();
-            TokenModel tokenModel = securityHelper.Login(usuario);
-            HttpContext.Session.SetString("token", tokenModel.Token);
+            try
+            {
+                SecurityHelper securityHelper = new SecurityHelper();
+                TokenModel tokenModel = securityHelper.Login(usuario);
+                HttpContext.Session.SetString("token", tokenModel.Token);
 
-            return View();
+                return RedirectToAction("Index","Home");
+            }
+            catch
+            {
+                return View();
+            }
+            
         }
 
         [HttpPost]

@@ -95,10 +95,10 @@ namespace Entities.Entities
                     .HasForeignKey(d => d.RsvHabId)
                     .HasConstraintName("FK__Reservaci__RSV_H__32E0915F");
 
-                entity.HasOne(d => d.RsvUsr)
+/*                entity.HasOne(d => d.RsvUsr)
                     .WithMany(p => p.Reservaciones)
                     .HasForeignKey(d => d.RsvUsrId)
-                    .HasConstraintName("FK__Reservaci__RSV_U__31EC6D26");
+                    .HasConstraintName("FK__Reservaci__RSV_U__75A278F5");*/
             });
 
             modelBuilder.Entity<Role>(entity =>
