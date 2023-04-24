@@ -21,7 +21,7 @@
                     <form asp-action="Consulta">
                         <div class="select-option">
                             <label asp-for="CantCamas"></label>
-                            <input asp-for="CantCamas" class="form-control" />
+                            <input asp-for="CantCamas" class="form-control" id="cantCamas" />
                         </div>
                         <div class="check-date">
                             <label asp-for="Entrada"></label>
@@ -34,7 +34,7 @@
                             <i class="icon_calendar"></i>
                         </div>
 
-                        <button type="submit">Check Availability</button>
+                        <button type="submit" id="btnDisponibilidad">ConsultarDisponibilidad</button>
                     </form>
                 </div>
             </div>
@@ -405,3 +405,5 @@
         </div>
     </div>
 </section>
+
+<script src="~/js/Home.js"></script>

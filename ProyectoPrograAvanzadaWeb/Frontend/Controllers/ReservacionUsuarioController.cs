@@ -1,4 +1,4 @@
-﻿using Frontend.Helpers;
+using Frontend.Helpers;
 using Frontend.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
@@ -12,7 +12,6 @@ namespace Frontend.Controllers
     {
         private ReservacionHelper helper;
 
-
         // GET: ReservacionUsuarioController
         public ActionResult Index(HabitacionViewModel habitacion)
         {
@@ -24,24 +23,6 @@ namespace Frontend.Controllers
             return View();
         }
 
-        public ActionResult UsuarioReservacion()
-        {
-            return View();
-        }
-
-        // GET: ReservacionUsuarioController/Details/5
-        public ActionResult Details(int id)
-        {
-            return View();
-        }
-
-        //// GET: ReservacionUsuarioController/Create
-        //public ActionResult Create()
-        //{
-        //    return View();
-        //}
-
-        // POST: ReservacionUsuarioController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create(ReservacionViewModel model)
@@ -51,7 +32,7 @@ namespace Frontend.Controllers
                 string token = HttpContext.Session.GetString("token");
                 helper = new ReservacionHelper(token);
                 helper.Create(model);
-                return RedirectToAction("Index","Home");
+                return RedirectToAction("Index", "Home");
             }
             catch
             {
@@ -59,46 +40,10 @@ namespace Frontend.Controllers
             }
         }
 
-        // GET: ReservacionUsuarioController/Edit/5
-        public ActionResult Edit(int id)
-        {
+
+        public ActionResult ErrorReservacion(){
             return View();
-        }
+        } 
 
-        // POST: ReservacionUsuarioController/Edit/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: ReservacionUsuarioController/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        // POST: ReservacionUsuarioController/Delete/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
     }
 }
