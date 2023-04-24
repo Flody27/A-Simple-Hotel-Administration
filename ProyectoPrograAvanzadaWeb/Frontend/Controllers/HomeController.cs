@@ -20,11 +20,14 @@ namespace Frontend.Controllers
         {
             return View();
         }
+
+        [HttpGet("ingresar")]
         public IActionResult Login()
         {
             return View();  
         }
-        [HttpPost]
+
+        [HttpPost("ingresar")]
         public IActionResult Login(LoginViewModel usuario)
         {
             try
@@ -33,14 +36,41 @@ namespace Frontend.Controllers
                 TokenModel tokenModel = securityHelper.Login(usuario);
                 HttpContext.Session.SetString("token", tokenModel.Token);
 
-                return RedirectToAction("Index","Home");
+                return RedirectToAction("Index", "Home");
             }
             catch
             {
                 return View();
             }
-            
+
         }
+
+
+        [HttpGet("registrarse")]
+        public IActionResult Register()
+        {
+            return View();
+        }
+
+        [HttpPost("registrarse")]
+        public IActionResult Register(LoginViewModel usuario)
+        {
+            try
+            {
+                SecurityHelper securityHelper = new SecurityHelper();
+                TokenModel tokenModel = securityHelper.Register(usuario);
+                HttpContext.Session.SetString("token", tokenModel.Token);
+
+                return RedirectToAction("Index", "Home");
+            }
+            catch
+            {
+                return View();
+            }
+
+        }
+
+
 
         [HttpPost]
         [ValidateAntiForgeryToken]
