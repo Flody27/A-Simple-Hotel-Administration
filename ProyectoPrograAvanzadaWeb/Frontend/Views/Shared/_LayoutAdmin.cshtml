@@ -293,17 +293,19 @@
         $(document).ready(function () {
             $('#dataTables').DataTable(
                 {
+                    "autoWidth": true,
+                    'responsive': true,
                     dom: 'Bfrtilp',
                     buttons: [
                         {
                             extend: 'excelHtml5',
-                            text: '<i class="fa-sharp fa-solid fa-file-excel" style="color: #000000;"></i> ',
+                            text: '<i class="fa fa-file-excel-o"></i> ',
                             titleAttr: 'Exportar a Excel',
                             className: 'btn btn-success',
                         },
                         {
                             extend: 'pdfHtml5',
-                            text: '<i class="fa-solid fa-file-pdf" style="color: #000000;"></i> ',
+                            text: '<i class="fa fa-file-pdf-o"></i> ',
                             titleAttr: 'Exportar a PDF',
                             className: 'btn btn-danger',
                         },
